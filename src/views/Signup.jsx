@@ -19,12 +19,12 @@ const Signup = () => {
   const [showErrorMessage, setShowErrorMessage] = useState(false);
 
   const errorList = {
-    emailError: '',
-    emailRepeatError: '',
-    nameError: '',
-    passwordError: '',
-    passwordRepeatError: '',
-    selectedRoleError: ''
+    emailError: 'Por favor ingresa un correo válido',
+    emailRepeatError: 'Los correos no coinciden',
+    nameError: 'Por favor ingresa tu nombre',
+    passwordError: 'Por favor ingresa tu contraseña',
+    passwordRepeatError: 'Las contraseñas no coinciden',
+    selectedRoleError: 'Por favor selecciona un rol'
   }
 
   const navigate = useNavigate();
@@ -35,7 +35,7 @@ const Signup = () => {
     
     const isValidEmail = validateEmail(newEmail);
     if (!isValidEmail) {
-      setEmailError('Por favor ingresa un correo válido');
+      setEmailError(errorList.emailError);
     } else {
       setEmailError('');
     }
@@ -47,7 +47,7 @@ const Signup = () => {
     
     const isValidEmailRepeat = validateEmailRepeat(newEmailRepeat);
     if (!isValidEmailRepeat) {
-      setEmailRepeatError('Los correos no coinciden');
+      setEmailRepeatError(errorList.emailRepeatError);
     } else {
       setEmailRepeatError('');
     }
@@ -59,7 +59,7 @@ const Signup = () => {
 
     const isValidName = validateName(newName);
     if (!isValidName) {
-      setNameError('Por favor ingresa tu nombre');
+      setNameError(errorList.nameError);
     } else {
       setNameError('');
     }
@@ -71,7 +71,7 @@ const Signup = () => {
 
     const isValidPassword = validatePassword(newPassword);
     if (!isValidPassword) {
-      setPasswordError('Por favor ingresa tu contraseña')
+      setPasswordError(errorList.passwordError)
     } else {
       setPasswordError('')
     }
@@ -83,7 +83,7 @@ const Signup = () => {
 
     const isValidPasswordRepeat = validatePasswordRepeat(newPasswordRepeat)
     if(!isValidPasswordRepeat) {
-      setPasswordRepeatError('Las contraseñas no coinciden')
+      setPasswordRepeatError(errorList.passwordRepeatError)
     } else {
       setPasswordRepeatError('')
     }
@@ -95,7 +95,7 @@ const Signup = () => {
 
     const isValidRole = validateRole(newRole);
     if (!isValidRole) {
-      setSelectedRoleError('Por favor selecciona un rol');
+      setSelectedRoleError(errorList.selectedRoleError);
     } else {
       setSelectedRoleError('');
     }
@@ -105,42 +105,42 @@ const Signup = () => {
     // Email validation
     const isValidEmail = validateEmail(email);
     if (!isValidEmail) {
-      setEmailError('Por favor ingresa un correo válido');
+      setEmailError(errorList.emailError);
     } else {
       setEmailError('');
     }
 
     const isValidEmailRepeat = validateEmailRepeat(emailRepeat);
     if (!isValidEmailRepeat) {
-      setEmailRepeatError('Los correos no coinciden');
+      setEmailRepeatError(errorList.emailRepeatError);
     } else {
       setEmailRepeatError('');
     }
 
     const isValidName = validateName(name);
     if (!isValidName) {
-      setNameError('Por favor ingresa tu nombre');
+      setNameError(errorList.nameError);
     } else {
       setNameError('');
     }
 
     const isValidPassword = validatePassword(password);
     if (!isValidPassword) {
-      setPasswordError('Por favor ingresa tu contraseña')
+      setPasswordError(errorList.passwordError)
     } else {
       setPasswordError('')
     }
 
     const isValidPasswordRepeat = validatePasswordRepeat(passwordRepeat);
     if (!isValidPasswordRepeat) {
-      setPasswordRepeatError('Las contraseñas no coinciden')
+      setPasswordRepeatError(errorList.passwordRepeatError)
     } else {
       setPasswordRepeatError('')
     }
 
     const isValidRole = validateRole(selectedRole);
     if (!isValidRole) {
-      setSelectedRoleError('Por favor selecciona un rol');
+      setSelectedRoleError(errorList.selectedRoleError);
     } else {
       setSelectedRoleError('');
     }
