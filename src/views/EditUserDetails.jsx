@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+
+// TODO: Implementar validaciones
 
 const EditUserDetails = () => {
   const [name, setName] = useState('');
   const [role, setRole] = useState('invitado');
+
+  const navigate = useNavigate();
 
   const handleNameChange = (event) => {
     setName(event.target.value);
@@ -15,6 +20,7 @@ const EditUserDetails = () => {
 	const handleEdit = () => {
 		// TODO: Implementar lógica
 		console.log('TODO: Implementar lógica');
+    navigate('/user-details');
 	}
 
   return (

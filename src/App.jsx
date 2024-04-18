@@ -25,7 +25,7 @@ function App() {
         <Route path='/user-details' element={ <UserDetails /> }/>
         <Route path='/edit-user' element={ <EditUserDetails /> }/>
         <Route path='/user-landing' element={ <UserLanding /> }/>
-        <Route path='event/:id' element={ <EventInfo />}/>
+        <Route path='/event/:id' element={ <EventInfo />}/>
       </Routes>
     </>
   )

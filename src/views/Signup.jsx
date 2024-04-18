@@ -102,7 +102,6 @@ const Signup = () => {
   };
 
   const handleSignup = () => {
-    // Email validation
     const isValidEmail = validateEmail(email);
     if (!isValidEmail) {
       setEmailError(errorList.emailError);
