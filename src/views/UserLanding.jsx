@@ -1,7 +1,8 @@
 import React from "react";
 import EventSummaryCard from "../components/EventSummaryCard";
 
-// TODO: Obtener datos de BBDD para dar contenido dinámico
+// TODO: Obtener datos de BBDD
+// TODO: Generar cartas dinámicamente según data de BBDD
 
 const UserLanding = () => {
     return (
@@ -16,6 +17,7 @@ const UserLanding = () => {
                 eventDate='20 MAYO 2024'
                 eventTicketsSent='32'
                 eventTicketsTotal='100'
+                eventID='1'
             />
             <EventSummaryCard 
                 eventName='FIESTA SPONSORS CONMEBOL'
@@ -25,6 +27,7 @@ const UserLanding = () => {
                 eventDate='23 MAYO 2024'
                 eventTicketsSent='167'
                 eventTicketsTotal='200'
+                eventID='2'
             />
         </div>
     );

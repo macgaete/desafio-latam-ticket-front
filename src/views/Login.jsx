@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const navigate = useNavigate();
 
   const handleEmailChange = (event) => {
     // TODO: Validar formato
@@ -15,7 +18,8 @@ const Login = () => {
 
   const handleLogin = () => {
     // TODO: Implementar lógica login
-    console.log('Logged in! ', email, password);
+    console.log('>>> PLACEHOLDER');
+    navigate('/user-landing');
   };
 
   return (
