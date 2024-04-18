@@ -10,6 +10,7 @@ import UserDetails from './views/UserDetails'
 import UserLanding from './views/UserLanding'
 import EditUserDetails from './views/EditUserDetails'
 import EventInfo from './views/EventInfo'
+import EditEvent from './views/EditEvent'
 
 // TODO: Diferenciar vistas según login
 
@@ -21,11 +22,12 @@ function App() {
         <Route path='*' element={ <FourOhFour /> }/>
         <Route path='/' element={ <Login /> }/>
         <Route path='/signup' element={ <Signup /> }/>
-        <Route path='/new-ticket' element={ <NewEvent /> }/>
+        <Route path='/new-event' element={ <NewEvent /> }/>
         <Route path='/user-details' element={ <UserDetails /> }/>
         <Route path='/edit-user' element={ <EditUserDetails /> }/>
         <Route path='/user-landing' element={ <UserLanding /> }/>
         <Route path='/event/:id' element={ <EventInfo />}/>
+        <Route path='/edit-event/:id' element={<EditEvent />} />
       </Routes>
     </>
   )
