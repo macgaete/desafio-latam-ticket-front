@@ -3,14 +3,29 @@ import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [email, setEmail] = useState('');
-  const [repeatEmail, setRepeatEmail] = useState('');
+  const [emailRepeat, setEmailRepeat] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [passwordRepeat, setPasswordRepeat] = useState('');
   const [selectedRole, setSelectedRole] = useState('');
+
+  // Errores
   const [emailError, setEmailError] = useState('');
-  const [repeatEmailError, setRepeatEmailError] = useState('');
+  const [emailRepeatError, setEmailRepeatError] = useState('');
+  const [nameError, setNameError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [passwordRepeatError, setPasswordRepeatError] = useState('');  
+  const [selectedRoleError, setSelectedRoleError] = useState('');
   const [showErrorMessage, setShowErrorMessage] = useState(false);
+
+  const errorList = {
+    emailError: '',
+    emailRepeatError: '',
+    nameError: '',
+    passwordError: '',
+    passwordRepeatError: '',
+    selectedRoleError: ''
+  }
 
   const navigate = useNavigate();
 
@@ -26,32 +41,64 @@ const Signup = () => {
     }
   };
 
-  const handleRepeatEmailChange = (event) => {
-    const newRepeatEmail = event.target.value;
-    setRepeatEmail(newRepeatEmail);
+  const handleEmailRepeatChange = (event) => {
+    const newEmailRepeat = event.target.value;
+    setEmailRepeat(newEmailRepeat);
     
-    const isValidRepeatEmail = validateRepeatEmail(newRepeatEmail);
-    if (!isValidRepeatEmail) {
-      setRepeatEmailError('Los correos no coinciden');
+    const isValidEmailRepeat = validateEmailRepeat(newEmailRepeat);
+    if (!isValidEmailRepeat) {
+      setEmailRepeatError('Los correos no coinciden');
     } else {
-      setRepeatEmailError('');
+      setEmailRepeatError('');
     }
   };
 
   const handleNameChange = (event) => {
-    setName(event.target.value);
+    const newName = event.target.value;
+    setName(newName);
+
+    const isValidName = validateName(newName);
+    if (!isValidName) {
+      setNameError('Por favor ingresa tu nombre');
+    } else {
+      setNameError('');
+    }
   };
 
   const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
+    const newPassword = event.target.value
+    setPassword(newPassword);
+
+    const isValidPassword = validatePassword(newPassword);
+    if (!isValidPassword) {
+      setPasswordError('Por favor ingresa tu contraseña')
+    } else {
+      setPasswordError('')
+    }
   };
 
   const handlePasswordRepeatChange = (event) => {
-    setPasswordRepeat(event.target.value);
+    const newPasswordRepeat = event.target.value;
+    setPasswordRepeat(newPasswordRepeat);
+
+    const isValidPasswordRepeat = validatePasswordRepeat(newPasswordRepeat)
+    if(!isValidPasswordRepeat) {
+      setPasswordRepeatError('Las contraseñas no coinciden')
+    } else {
+      setPasswordRepeatError('')
+    }
   };
   
   const handleRoleChange = (event) => {
-    setSelectedRole(event.target.value);
+    const newRole = event.target.value;
+    setSelectedRole(newRole);
+
+    const isValidRole = validateRole(newRole);
+    if (!isValidRole) {
+      setSelectedRoleError('Por favor selecciona un rol');
+    } else {
+      setSelectedRoleError('');
+    }
   };
 
   const handleSignup = () => {
@@ -63,18 +110,45 @@ const Signup = () => {
       setEmailError('');
     }
 
-    // Repeat email validation
-    const isValidRepeatEmail = validateRepeatEmail(repeatEmail);
-    if (!isValidRepeatEmail) {
-      setRepeatEmailError('Los correos no coinciden');
+    const isValidEmailRepeat = validateEmailRepeat(emailRepeat);
+    if (!isValidEmailRepeat) {
+      setEmailRepeatError('Los correos no coinciden');
     } else {
-      setRepeatEmailError('');
+      setEmailRepeatError('');
     }
 
-    // Check if any error exists
-    if (isValidEmail && isValidRepeatEmail) {
+    const isValidName = validateName(name);
+    if (!isValidName) {
+      setNameError('Por favor ingresa tu nombre');
+    } else {
+      setNameError('');
+    }
+
+    const isValidPassword = validatePassword(password);
+    if (!isValidPassword) {
+      setPasswordError('Por favor ingresa tu contraseña')
+    } else {
+      setPasswordError('')
+    }
+
+    const isValidPasswordRepeat = validatePasswordRepeat(passwordRepeat);
+    if (!isValidPasswordRepeat) {
+      setPasswordRepeatError('Las contraseñas no coinciden')
+    } else {
+      setPasswordRepeatError('')
+    }
+
+    const isValidRole = validateRole(selectedRole);
+    if (!isValidRole) {
+      setSelectedRoleError('Por favor selecciona un rol');
+    } else {
+      setSelectedRoleError('');
+    }
+
+    if (isValidEmail && isValidEmailRepeat && isValidName && isValidPassword && isValidPasswordRepeat && isValidRole) {
       setShowErrorMessage(false);
-      // TODO: Implement signup logic
+
+      // TODO: Implementar lógica signup
       console.log('>>> PLACEHOLDER ', email, password);
       navigate('/');
     } else {
@@ -82,14 +156,36 @@ const Signup = () => {
     }
   };
 
+  // Validaciones
   const validateEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
+    // Seguir formato de correo
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
 
-  const validateRepeatEmail = (repeatEmail) => {
-    return repeatEmail === email;
+  const validateEmailRepeat = (emailRepeat) => {
+    // Revisar coincidencia
+    return emailRepeat === email;
   };
+  
+  const validateName = (name) => {
+    // No vacío
+    return name.trim() !== '';
+  };
+
+  const validatePassword = (password) => {
+    // No vacía
+    return password.trim() !== '';
+  }
+
+  const validatePasswordRepeat = (passwordRepeat) => {
+    // Revisar coincidencia
+    return passwordRepeat === password;
+  }
+
+  const validateRole = (role) => {
+    // No vacío
+    return role.trim() !== '';
+  }
 
   return (
     <div>
@@ -109,11 +205,11 @@ const Signup = () => {
           <label>Repetir Correo </label>
           <input
             type='text'
-            id='repeatEmail'
-            value={repeatEmail}
-            onChange={handleRepeatEmailChange}
+            id='emailRepeat'
+            value={emailRepeat}
+            onChange={handleEmailRepeatChange}
           />
-          {repeatEmailError && <p className='formErrorMessage'>{repeatEmailError}</p>}
+          {emailRepeatError && <p className='formErrorMessage'>{emailRepeatError}</p>}
         </div>
         <div>
           <label>Nombre </label>
@@ -123,6 +219,7 @@ const Signup = () => {
             value={name}
             onChange={handleNameChange}
           />
+          { nameError && <p className='formErrorMessage'>{nameError}</p> }
         </div>
         <div>
           <label>Contraseña </label>
@@ -132,6 +229,7 @@ const Signup = () => {
             value={password}
             onChange={handlePasswordChange}
           />
+          {passwordError && <p className='formErrorMessage'>{passwordError}</p>}
         </div>
         <div>
           <label>Repetir Contraseña </label>
@@ -141,6 +239,7 @@ const Signup = () => {
             value={passwordRepeat}
             onChange={handlePasswordRepeatChange}
           />
+          {passwordRepeatError && <p className='formErrorMessage'>{passwordRepeatError}</p>}
         </div>
         <div>
           <label htmlFor='dropdown'>Selecciona un rol </label>
@@ -149,6 +248,7 @@ const Signup = () => {
             <option value='invitado'>Invitado</option>
             <option value='organizador'>Organizador</option>
           </select>
+          {selectedRoleError && <p className='formErrorMessage'>{selectedRoleError}</p>}
         </div>
         {showErrorMessage && <p className='formErrorMessage'>Por favor revisa la información que ingresaste</p>}
         <button type='button' onClick={handleSignup}>Registrarse</button>
