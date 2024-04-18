@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
+import BackendAPI from '../constants/BackendApiConfig.json'
 
 const UserContext = createContext({ user: {isLoggedIn:false, username:null}, loading: true });
 
@@ -20,14 +21,14 @@ export const UserProvider = ({ children }) => {
         const fetchUser = async () => {
             try {
                 dispatch({ type: 'SET_LOADING', payload: true });
-                const response = await fetch('https://example.com/api/user');
+                const response = await fetch(BackendAPI.api.url);
                 if (!response.ok) {
                     throw new Error('Failed to fetch user data');
                 }
                 const userData = await response.json();
                 dispatch({ type: 'SET_USER', payload: userData });
             } catch (error) {
-                console.error('Error fetching user data:', error);
+                console.error(`Error fetching user data from ${BackendAPI.api.url}:`, error);
             }
         };
 

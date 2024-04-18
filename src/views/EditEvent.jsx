@@ -11,7 +11,7 @@ const EditEvent = () => {
   const [inviteNameList, setInviteNameList] = useState('');
   const [inviteEmailList, setInviteEmailList] = useState('');
 
-  const { id } = useParams();
+  const { eventID } = useParams();
   // TODO: Conseguir datos de evento desde API según ID
 
   const navigate = useNavigate();
@@ -43,12 +43,12 @@ const EditEvent = () => {
 	const handleEdit = () => {
 		// TODO: Implementar lógica
 		console.log('TODO: Implementar lógica');
-    navigate('/event-details');
+    navigate(`/event/${eventID}`);
 	}
 
   return (
     <div>
-      <h1>Editar Perfil {id}</h1>
+      <h1>Editar Perfil {eventID}</h1>
       <div>
         <form>
           <div>
