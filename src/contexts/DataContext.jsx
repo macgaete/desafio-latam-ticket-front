@@ -1,7 +1,9 @@
+// Placeholder
+
 import React, { createContext, useContext, useReducer } from 'react';
 // import BackendAPI from '../constants/BackendApiConfig.json'
 
-const UserContext = createContext({ user: {userObj: {}, isLoggedIn: false} });
+const DataContext = createContext({ user: {userObj: {}, isLoggedIn: false} });
 
 const userReducer = (state, action) => {
     switch (action.type) {
@@ -33,5 +35,5 @@ export const UserProvider = ({ children }) => {
 };
 
 export const useUser = () => {
-    return useContext(UserContext);
+    return useContext(DataContext);
 };

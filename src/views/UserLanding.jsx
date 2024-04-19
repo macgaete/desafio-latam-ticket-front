@@ -1,13 +1,16 @@
 import React from "react";
 import EventSummaryCard from "../components/EventSummaryCard";
+import { useUser } from '../contexts/UserContext.jsx'
 
 // TODO: Obtener datos de BBDD
 // TODO: Generar contenido y cantidad de cartas dinámicamente según data de BBDD
 
 const UserLanding = () => {
+    const { user } = useUser();
+
     return (
         <div>
-            <h1>Hola [USUARIO/INVITADO]!</h1>
+            <h1>Hola { user && user.userObj.name }!</h1>
             <h4>Próximos eventos</h4>
             <EventSummaryCard 
                 eventName='FIESTA INAUGURACIÓN CONMEBOL'

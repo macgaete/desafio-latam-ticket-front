@@ -1,52 +1,44 @@
-import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import React, { useEffect } from 'react';
 import GoogleLoginDiv from '../components/GoogleLoginDiv';
+import { useNavigate } from "react-router-dom";
+import { useUser } from '../contexts/UserContext.jsx'
+
+import { jwtDecode } from 'jwt-decode'
+import GoogleCreds from '../../creds.json'
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const { user, userCtxLogin } = useUser();
 
   const navigate = useNavigate();
 
-  const handleEmailChange = (event) => {
-    // TODO: Validar formato
-    setEmail(event.target.value);
-  };
+  function handleLogin(response){
+    const userObject = jwtDecode(response.credential);
 
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
+    if(!user.isLoggedIn){
+      userCtxLogin(userObject);
+      navigate('/user-landing')
+    }
 
-  const handleLogin = () => {
-    // TODO: Implementar lógica login
-    console.log('>>> PLACEHOLDER');
-    navigate('/user-landing');
-  };
+    document.getElementById("googleLoginDiv").hidden = true;
+  }
+
+  useEffect(() => {
+    /* global google */
+    google.accounts.id.initialize({
+      client_id: GoogleCreds.web.client_id,
+      callback: handleLogin
+    });
+
+    google.accounts.id.renderButton(
+      document.getElementById("googleLoginDiv"),
+      { theme: "outline", size: "large" }
+    );
+
+  }, [])
 
   return (
     <div>
       <h2>Login</h2>
-      <form>
-        <div>
-          <label>Correo:</label>
-          <input
-            type="text"
-            id="email"
-            value={email}
-            onChange={handleEmailChange}
-          />
-        </div>
-        <div>
-          <label>Contraseña:</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={handlePasswordChange}
-          />
-        </div>
-        <button type="button" onClick={handleLogin}>Login</button>
-      </form>
       <GoogleLoginDiv />
     </div>
   );

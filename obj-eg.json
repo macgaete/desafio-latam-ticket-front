@@ -1,0 +1,16 @@
+{
+    "iss": "https://accounts.google.com",
+    "azp": "608994295039-92k2e1lm887q4lkafom8cvn3qoho5gj7.apps.googleusercontent.com",
+    "aud": "608994295039-92k2e1lm887q4lkafom8cvn3qoho5gj7.apps.googleusercontent.com",
+    "sub": "118314375232503359224",
+    "email": "mac.gaeteg@gmail.com",
+    "email_verified": true,
+    "nbf": 1713546188,
+    "name": "Maca Gaete",
+    "picture": "https://lh3.googleusercontent.com/a/ACg8ocL8m38XlAOyRAr3cra52VQB718lNJmch1hnOP6tuQPsfSi2eF8V=s96-c",
+    "given_name": "Maca",
+    "family_name": "Gaete",
+    "iat": 1713546488,
+    "exp": 1713550088,
+    "jti": "d63ec9301321b97ab9d91dde76fa0c61173fef6b"
+  }

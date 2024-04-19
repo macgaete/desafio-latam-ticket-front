@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { useUser } from '../contexts/UserContext';
 import { useNavigate } from "react-router-dom";
 
 // TODO: Implementar validaciones
 
 const EditUserDetails = () => {
-  const [name, setName] = useState('');
+  const { user } = useUser();
+  
+  const [name, setName] = useState(user.given_name);
   const [role, setRole] = useState('invitado');
 
   const navigate = useNavigate();
