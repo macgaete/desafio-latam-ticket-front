@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import GoogleLoginDiv from '../components/GoogleLoginDiv';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -46,6 +47,7 @@ const Login = () => {
         </div>
         <button type="button" onClick={handleLogin}>Login</button>
       </form>
+      <GoogleLoginDiv />
     </div>
   );
 }

@@ -1,42 +1,35 @@
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
-import BackendAPI from '../constants/BackendApiConfig.json'
+// import BackendAPI from '../constants/BackendApiConfig.json'
 
-const UserContext = createContext({ user: {isLoggedIn:false, username:null}, loading: true });
+const UserContext = createContext({ user: {} });
 
 const userReducer = (state, action) => {
     switch (action.type) {
-        case 'SET_USER':
-            return { ...state, user: action.payload, loading: false };
-        case 'SET_LOADING':
-            return { ...state, loading: action.payload };
+        case 'SET_USER': // Login
+            return { ...state, user: action.payload };
+        case 'UNSET_USER': // Log Out
+            return { ...state, user: {}}
         default:
             return state;
     }
 };
 
 export const UserProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(userReducer, { user: {}, loading: true });
+    const [state, dispatch] = useReducer(userReducer, {});
 
-    useEffect(() => {
-        const fetchUser = async () => {
-            try {
-                dispatch({ type: 'SET_LOADING', payload: true });
-                const response = await fetch(BackendAPI.api.url);
-                if (!response.ok) {
-                    throw new Error('Failed to fetch user data');
-                }
-                const userData = await response.json();
-                dispatch({ type: 'SET_USER', payload: userData });
-            } catch (error) {
-                console.error(`Error fetching user data from ${BackendAPI.api.url}:`, error);
-            }
-        };
+    const userCtxLogin = (userObject) => {
+        dispatch({ type: 'SET_USER', payload: userObject });
+    }
 
-        fetchUser();
-    }, []);
+    const userCtxLogout = () => {
+        dispatch({ type: 'UNSET_USER' })
+    }
+
+    console.log("userCtxLogin function:", userCtxLogin);
+    console.log("userCtxLogout function:", userCtxLogout);
 
     return (
-        <UserContext.Provider value={{ user: state.user, loading: state.loading }}>
+        <UserContext.Provider value={{ user: state.user}}>
             {children}
         </UserContext.Provider>
     );

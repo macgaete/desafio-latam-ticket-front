@@ -2,7 +2,7 @@ import React from "react";
 import EventSummaryCard from "../components/EventSummaryCard";
 
 // TODO: Obtener datos de BBDD
-// TODO: Generar cartas dinámicamente según data de BBDD
+// TODO: Generar contenido y cantidad de cartas dinámicamente según data de BBDD
 
 const UserLanding = () => {
     return (
