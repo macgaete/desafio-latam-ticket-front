@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import CoolButton from '../components/CoolButton'
 import { useNavigate } from "react-router-dom";
 import FormError from '../components/FormError'
+import FormContainer from '../components/FormContainer';
+import InputWithError from '../components/InputWithError';
 
 const NewEvent = () => {
 	const [eventName, setEventName] = useState('');
@@ -168,72 +170,56 @@ const handleCreate = () => {
 		<div>
 			<h1>Crear Evento</h1>
 			<div>
-				<form>
-					<div>
-						<label>Nombre Evento </label>
-						<input
-							type='text'
-							id='eventName'
-							value={eventName}
-							onChange={handleEventNameChange}
-						/>
-						{eventNameError && <FormError errorMessage={eventNameError} />}
-					</div>
-					<div>
-						<label>Mandante Organizador </label>
-						<input
-							type='text'
-							id='organizer'
-							value={organizer}
-							onChange={handleOrganizerChange}
-						/>
-						{organizerError && <FormError errorMessage={organizerError} />}
-					</div>
-					<div>
-						<label>Sponsor </label>
-						<input
-							type='text'
-							id='sponsor'
-							value={sponsor}
-							onChange={handleSponsorChange}
-						/>
-						{sponsorError && <FormError errorMessage={sponsorError} />}
-					</div>
-					<div>
-						<label>Proyecto </label>
-						<input
-							type='text'
-							id='project'
-							value={project}
-							onChange={handleProjectChange}
-						/>
-						{projectError && <FormError errorMessage={projectError} />}
-					</div>
-					<div>
-						<label>Nombre(s) Invitado(s) </label>
-						<input
-							type='textarea'
-							id='inviteNameList'
-							value={inviteNameList}
-							onChange={handleInviteNameListChange}
-						/>
-						{inviteNameListError && <FormError errorMessage={inviteNameListError} />}
-					</div>
-					<div>
-						<label>Correo(s) Invitado(s) </label>
-						<input
-							type='textarea'
-							id='inviteEmailList'
-							value={inviteEmailList}
-							onChange={handleInviteEmailListChange}
-						/>
-						{inviteEmailListError && <FormError errorMessage={inviteEmailListError} />}
-					</div>
-					{showErrorMessage && <FormError errorMessage={'Por favor revisa la información que ingresaste'} />}
+			<FormContainer>
+				<InputWithError 
+					label='Nombre Evento'
+					id='eventName'
+					value={eventName}
+					onChange={handleEventNameChange}
+					error={eventNameError}
+				/>
+				<InputWithError 
+					label='Mandante Organizador'
+					id='organizer'
+					value={organizer}
+					onChange={handleOrganizerChange}
+					error={organizerError}
+				/>
+				<InputWithError 
+					label='Sponsor'
+					id='sponsor'
+					value={sponsor}
+					onChange={handleSponsorChange}
+					error={sponsorError}
+				/>
+				<InputWithError 
+					label='Proyecto'
+					id='project'
+					value={project}
+					onChange={handleProjectChange}
+					error={projectError}
+				/>
+				<InputWithError 
+					label='Nombre(s) Invitado(s)'
+					id='inviteNameList'
+					value={inviteNameList}
+					onChange={handleInviteNameListChange}
+					error={inviteNameListError}
+				/>
+				<InputWithError 
+					label='Correo(s) Invitado(s)'
+					id='inviteEmailList'
+					value={inviteEmailList}
+					onChange={handleInviteEmailListChange}
+					error={inviteEmailListError}
+				/>
+				{showErrorMessage && <FormError errorMessage={'Por favor revisa la información que ingresaste'} />}
+				<div className="formGroup">
 					<CoolButton text={'Guardar'} onClickFunction={handleCreate} />
-				</form>
-			</div>
+				</div>
+			</FormContainer>
 		</div>
+	</div>
 	);
 };
 

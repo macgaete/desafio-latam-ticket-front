@@ -1,3 +1,4 @@
+/* General */
 * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -7,7 +8,12 @@
 body{
     margin: 0;
     background-color: #eee;
-    height: 100vh;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
 }
 
 :root {
@@ -24,26 +30,147 @@ body{
     -moz-osx-font-smoothing: grayscale;
 }
 
+.pageHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Navbar */
 nav {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background: linear-gradient(to left, #ae00ff, #fff399, #dc0042);
+    padding: 10px 20px;
+    overflow: hidden;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
     background-color: #ff005d;
+}
+
+.logo {
+    height: 100px;
+    width: auto;
+    margin-top: 1.5%;
+    margin-left: 1.5%;
+}
+
+.navlinks a {
+    margin-right: 20px;
+    padding: 10px 20px;
+}
+
+.active {
+    color: #fffad5;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.inactive {
+    color: #ffffff;
+}
+
+/* Botón */
+.coolButton {
+    background: linear-gradient(to right, #e70174, #ff0080);
+    color: #fff;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.coolButton:hover {
+    background: linear-gradient(to right, #ff0080, #e70174);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Contenedores de Eventos */
+.eventContainer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.eventSummaryCard {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    min-width: 300px;
+    max-width: 400px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+.eventCardFooter {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Formularios */
+.formContainer {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+}
+
+.inputContainer {
+    display: flex;
+    align-items: center;
+}
+
+.inputContainer label {
+    margin-right: 10px;
+}
+
+.inputContainer input[type="text"],
+.inputContainer input[type="textarea"] {
+    flex: 1;
+    border: none;
+    outline: none;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    height: 30px;
+}
+
+.inputContainer input[type="text"]:focus,
+.inputContainer input[type="textarea"]:focus {
+    border: 1px solid #ccc;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+}
+
+.inputContainer input[type="text"]:hover,
+.inputContainer input[type="textarea"]:hover {
+    border: 1px solid #ccc;
+}
+
+.errorContainer {
+    margin-top: 3px;
 }
 
 .formErrorMessage {
     color: red;
-}
-
-.active {
-    color: #ffffff;
-}
-
-.inactive {
-    color: #f9f9f9;
-}
-
-.coolButton {
-    background-color: #ff005d;
+    font-size: 12px;
+    margin-top: 3px;
 }

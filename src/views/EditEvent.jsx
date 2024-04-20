@@ -47,6 +47,7 @@ const EditEvent = () => {
     navigate(`/event/${eventID}`);
 	}
 
+  // TODO: Utilizar componentes
   return (
     <div>
       <h1>Editar Evento {eventID}</h1>

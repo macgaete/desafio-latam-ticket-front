@@ -1,0 +1,64 @@
+{
+    "eventList": [
+        {
+            "eventID": "1",
+            "eventName": "FIESTA INAUGURACIÓN CONMEBOL",
+            "eventTimeStart": "16:00",
+            "eventTimeEnd": "21:00",
+            "eventLocation": "CLUB HIPICO DE SANTIAGO",
+            "eventDate": "20 MAYO 2024",
+            "eventTicketsSent": "32",
+            "eventTicketsTotal": "100"
+        },
+        {
+            "eventID": "2",
+            "eventName": "FIESTA SPONSORS CONMEBOL",
+            "eventTimeStart": "17:00",
+            "eventTimeEnd": "23:00",
+            "eventLocation": "CENTRO EVENTOS CASA PIEDRA",
+            "eventDate": "23 MAYO 2024",
+            "eventTicketsSent": "167",
+            "eventTicketsTotal": "200"
+        },
+        {
+            "eventID": "3",
+            "eventName": "FIESTA DEPORTIVA LATAM",
+            "eventTimeStart": "14:00",
+            "eventTimeEnd": "19:00",
+            "eventLocation": "ESTADIO NACIONAL",
+            "eventDate": "25 MAYO 2024",
+            "eventTicketsSent": "50",
+            "eventTicketsTotal": "150"
+          },
+          {
+            "eventID": "4",
+            "eventName": "CONFERENCIA TECNOLOGÍA 2024",
+            "eventTimeStart": "09:00",
+            "eventTimeEnd": "15:00",
+            "eventLocation": "CENTRO DE CONVENCIONES",
+            "eventDate": "28 MAYO 2024",
+            "eventTicketsSent": "80",
+            "eventTicketsTotal": "200"
+          },
+          {
+            "eventID": "5",
+            "eventName": "FESTIVAL CULTURAL",
+            "eventTimeStart": "12:00",
+            "eventTimeEnd": "18:00",
+            "eventLocation": "PLAZA DE ARMAS",
+            "eventDate": "05 JUNIO 2024",
+            "eventTicketsSent": "40",
+            "eventTicketsTotal": "100"
+          },
+          {
+            "eventID": "6",
+            "eventName": "CONGRESO MEDICINA",
+            "eventTimeStart": "08:00",
+            "eventTimeEnd": "17:00",
+            "eventLocation": "HOTEL SHERATON",
+            "eventDate": "10 JUNIO 2024",
+            "eventTicketsSent": "90",
+            "eventTicketsTotal": "150"
+          }
+    ]
+}

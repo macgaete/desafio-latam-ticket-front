@@ -10,16 +10,16 @@ const EventSummaryCard = ({eventName, eventTimeStart, eventTimeEnd, eventLocatio
   }
   
   return (
-    <div>
-      <div>
+    <div className="eventSummaryCard">
+      <div className="eventCardContent">
         <h4>{eventName}</h4>
         <div>{eventTimeStart} - {eventTimeEnd}</div>
         <div>{eventLocation}</div>
         <div>{eventDate}</div>
-      </div>
-      <div>
-        <CoolButton text={'Detalle Evento'} onClickFunction={buttonClickFunction} />
         <div>Tickets Enviados: {eventTicketsSent}/{eventTicketsTotal}</div>
+      </div>
+      <div className="eventCardFooter">
+        <CoolButton text={'Detalle Evento'} onClickFunction={buttonClickFunction} />
       </div>
     </div>
   );

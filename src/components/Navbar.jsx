@@ -1,6 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useUser } from '../contexts/UserContext.jsx'
 import CoolButton from "./CoolButton.jsx";
+import logo from '../assets/logo.png'
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -14,16 +15,19 @@ const Navbar = () => {
   }
 
   return (
-    <nav>
-      <span></span>
-      <div className="navlinks">
-        { user?.isLoggedIn ? <NavLink to="/user-landing" className={setActiveClass} > Home </NavLink> : <NavLink to="/" className={setActiveClass} > Home </NavLink>}
-        { !user?.isLoggedIn && <NavLink to="/login" className={setActiveClass} > Login </NavLink> } 
-        { !user?.isLoggedIn && <NavLink to="/signup" className={setActiveClass} > Regístrate </NavLink> }
-        { user?.isLoggedIn && <NavLink className={setActiveClass} to='/user-details'> Perfil </NavLink> }
-        { user?.isLoggedIn && <CoolButton text={'Salir'} onClickFunction={handleSignout} /> }
-      </div>
-    </nav>
+    <>
+      <nav className="navbar">
+        <span></span> 
+        <div className="navlinks">
+          { user?.isLoggedIn ? <NavLink to="/user-landing" className={`${setActiveClass} coolButton`} > Home </NavLink> : <NavLink to="/" className={`${setActiveClass} coolButton`} > Home </NavLink>}
+          { !user?.isLoggedIn && <NavLink to="/login" className={`${setActiveClass} coolButton`} > Login </NavLink> } 
+          { !user?.isLoggedIn && <NavLink to="/signup" className={`${setActiveClass} coolButton`} > Regístrate </NavLink> }
+          { user?.isLoggedIn && <NavLink to='/user-details' className={`${setActiveClass} coolButton`} > Perfil </NavLink> }
+          { user?.isLoggedIn && <CoolButton text={'Salir'} onClickFunction={handleSignout} /> }
+        </div>
+      </nav>
+      <img className="logo" src={logo} alt="Logo" />
+    </>
   );
 };
   

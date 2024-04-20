@@ -188,6 +188,8 @@ const Signup = () => {
     return role.trim() !== '';
   }
 
+
+  // TODO: Adaptar con InputWithError
   return (
     <div>
       <h2>Signup</h2>

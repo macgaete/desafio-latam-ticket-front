@@ -1,5 +1,7 @@
 import React from "react";
 
+
+// TODO: Elaborar vista
 const RedeemTicket = () => {
 
     return (
