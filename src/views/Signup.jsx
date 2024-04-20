@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import CoolButton from '../components/CoolButton';
 import FormError from '../components/FormError';
+import PageHeader from '../components/PageHeader';
+import InputWithError from '../components/InputWithError';
+import FormContainer from '../components/FormContainer';
 
 const Signup = () => {
   const [email, setEmail] = useState('');
@@ -188,64 +191,47 @@ const Signup = () => {
     return role.trim() !== '';
   }
 
-
-  // TODO: Adaptar con InputWithError
   return (
     <div>
-      <h2>Signup</h2>
-      <form>
-        <div>
-          <label>Correo </label>
-          <input
-            type='text'
-            id='email'
-            value={email}
-            onChange={handleEmailChange}
-          />
-          {emailError && <FormError errorMessage={emailError} />}
-        </div>
-        <div>
-          <label>Repetir Correo </label>
-          <input
-            type='text'
-            id='emailRepeat'
-            value={emailRepeat}
-            onChange={handleEmailRepeatChange}
-          />
-          {emailRepeatError && <FormError errorMessage={emailRepeatError}/>}
-        </div>
-        <div>
-          <label>Nombre </label>
-          <input
-            type='text'
-            id='name'
-            value={name}
-            onChange={handleNameChange}
-          />
-          { nameError && <FormError errorMessage={nameError}/> }
-        </div>
-        <div>
-          <label>Contraseña </label>
-          <input
-            type='password'
-            id='password'
-            value={password}
-            onChange={handlePasswordChange}
-          />
-          {passwordError && <FormError errorMessage={passwordError} />}
-        </div>
-        <div>
-          <label>Repetir Contraseña </label>
-          <input
-            type='password'
-            id='password-repeat'
-            value={passwordRepeat}
-            onChange={handlePasswordRepeatChange}
-          />
-          {passwordRepeatError && <FormError errorMessage={passwordRepeatError} />}
-        </div>
-        <div>
-          <label htmlFor='dropdown'>Selecciona un rol </label>
+      <PageHeader h1='Signup' h4='Ingresa tus datos' />
+      <FormContainer>
+        <InputWithError 
+          label='Correo'
+          id='email'
+          value={email}
+          onChange={handleEmailChange}
+          error={emailError}
+        />
+        <InputWithError 
+          label='Repetir Correo'
+          id='emailRepeat'
+          value={emailRepeat}
+          onChange={handleEmailRepeatChange}
+          error={emailRepeatError}
+        />
+        <InputWithError 
+          label='Nombre'
+          id='name'
+          value={name}
+          onChange={handleNameChange}
+          error={nameError}
+        />
+        <InputWithError 
+          label='Contraseña'
+          id='password'
+          value={password}
+          onChange={handlePasswordChange}
+          error={passwordError}
+        />
+        <InputWithError 
+          label='Repetir Contraseña'
+          id='password-repeat'
+          value={passwordRepeat}
+          onChange={handlePasswordRepeatChange}
+          error={passwordRepeatError}
+        />
+        <div className="formGroup">
+          <label htmlFor='dropdown'>Selecciona un rol</label>
           <select id='dropdown' value={selectedRole} onChange={handleRoleChange}>
             <option value=''>Selecciona un rol</option>
             <option value='invitado'>Invitado</option>
@@ -255,7 +241,7 @@ const Signup = () => {
         </div>
         {showErrorMessage && <FormError errorMessage={'Por favor revisa la información que ingresaste'} />}
         <CoolButton text={'Registrarse'} onClick={handleSignup} />
-      </form>
+      </FormContainer>
     </div>
   );
 }

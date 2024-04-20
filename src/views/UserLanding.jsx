@@ -5,10 +5,11 @@ import { useUser } from '../contexts/UserContext.jsx'
 import CoolButton from "../components/CoolButton.jsx";
 import EventContainer from "../components/EventContainer.jsx";
 import PageHeader from "../components/PageHeader.jsx";
+
+// Esto representa una respuesta de la API por ahora
 import EventList from "../assets/eventPlaceholder.json"
 
 // TODO: Obtener datos de BBDD
-// TODO: Generar contenido y cantidad de cartas dinámicamente según data de BBDD
 
 const UserLanding = () => {
     const { user } = useUser();
@@ -21,7 +22,7 @@ const UserLanding = () => {
     return (
         <div>
             <PageHeader h1={`Hola ${user.userObj.name}!`} h4='Próximos eventos' />
-            <div className="pageHeader">
+            <div className="pageHeader pageHeaderMarginBottom">
                 { user.isOrganizer && <CoolButton text={'Crear Evento'} onClickFunction={handleNewEvent} />}
             </div>
             <EventContainer>

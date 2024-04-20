@@ -30,11 +30,51 @@ a {
     -moz-osx-font-smoothing: grayscale;
 }
 
+.centerDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .pageHeader {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+}
+
+.pageHeaderMarginBottom {
+    margin-bottom: 10px;
+}
+
+/* Card genérica */
+.card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card div {
+    margin-bottom: 10px;
+}
+
+.card label {
+    margin-left: 5px;
+}
+
+.card button {
+    margin: 10px;
+}
+
+.centerCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
 
 /* Navbar */
@@ -66,6 +106,7 @@ nav {
 .navlinks a {
     margin-right: 20px;
     padding: 10px 20px;
+    line-height: 50px;
 }
 
 .active {
@@ -173,4 +214,22 @@ nav {
     color: red;
     font-size: 12px;
     margin-top: 3px;
+}
+
+#dropdown {
+    flex: 1;
+    border: none;
+    outline: none;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    height: 40px;
+}
+
+#dropdown:focus {
+    border: 1px solid #ccc;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+}
+
+#dropdown:hover {
+    border: 1px solid #ccc;
 }

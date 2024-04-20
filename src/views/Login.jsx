@@ -5,6 +5,9 @@ import { useUser } from '../contexts/UserContext.jsx'
 
 import { jwtDecode } from 'jwt-decode'
 import GoogleCreds from '../../creds.json'
+import CenterDiv from '../components/CenterDiv'
+
+// TODO: Restaurar campos login
 
 const Login = () => {
   const { user, userCtxLogin } = useUser();
@@ -37,10 +40,10 @@ const Login = () => {
   }, [])
 
   return (
-    <div>
+    <CenterDiv>
       <h2>Login</h2>
       <GoogleLoginDiv />
-    </div>
+    </CenterDiv>
   );
 }
 

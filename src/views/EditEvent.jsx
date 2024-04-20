@@ -49,7 +49,7 @@ const EditEvent = () => {
 
   // TODO: Utilizar componentes
   return (
-    <div>
+    <CenterDiv>
       <h1>Editar Evento {eventID}</h1>
       <div>
         <form>
@@ -110,7 +110,7 @@ const EditEvent = () => {
 					<CoolButton text={'Guardar'} onClickFunction={handleEdit} />
         </form>
       </div>
-    </div>
+    </CenterDiv>
   );
 };
 

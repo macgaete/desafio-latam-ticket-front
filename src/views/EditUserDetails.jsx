@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { useUser } from '../contexts/UserContext';
 import { useNavigate } from "react-router-dom";
 import CoolButton from '../components/CoolButton';
-
-// TODO: Implementar validaciones
+import CenterDiv from '../components/CenterDiv';
+import PageHeader from '../components/PageHeader';
+import Card from '../components/Card';
 
 const EditUserDetails = () => {
   const { user, userCtxSetOrganizer, userCtxSetGuest } = useUser();
@@ -36,9 +37,9 @@ const EditUserDetails = () => {
 	}
 
   return (
-    <div>
-      <h1>Editar Perfil</h1>
-      <div>
+    <CenterDiv>
+      <PageHeader h1='Editar Perfil' h4={`Sesión de ${ user.userObj.name }`} />
+      <Card>
         <form>
           <div>
             <input
@@ -65,8 +66,8 @@ const EditUserDetails = () => {
 					<CoolButton text={'Guardar'} onClickFunction={handleEdit} />
           <CoolButton text={'Cancelar'} onClickFunction={handleReturn} />
         </form>
-      </div>
-    </div>
+      </Card>
+    </CenterDiv>
   );
 };
 

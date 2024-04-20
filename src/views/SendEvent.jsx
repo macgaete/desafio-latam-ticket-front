@@ -5,7 +5,6 @@ const SendEvent = () => {
     const { eventID } = useParams();
 
     // TODO: Render dinámico luego de consultar info de evento según ID
-    // TODO: try-catch validando si el evento existe para el usuario logueado
 
     return (
         <div>

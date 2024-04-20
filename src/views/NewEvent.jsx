@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import FormError from '../components/FormError'
 import FormContainer from '../components/FormContainer';
 import InputWithError from '../components/InputWithError';
+import PageHeader from '../components/PageHeader';
 
 const NewEvent = () => {
 	const [eventName, setEventName] = useState('');
@@ -30,8 +31,6 @@ const NewEvent = () => {
     inviteNameListError: 'Por favor ingresa uno o más nombres de invitados.',
     inviteEmailListError: 'Por favor ingresa uno o más correos electrónicos de invitados.'
   };
-
-  // TODO: Escribir evento a API
 
   const navigate = useNavigate();
 
@@ -168,57 +167,55 @@ const handleCreate = () => {
 
 	return (
 		<div>
-			<h1>Crear Evento</h1>
-			<div>
-			<FormContainer>
-				<InputWithError 
-					label='Nombre Evento'
-					id='eventName'
-					value={eventName}
-					onChange={handleEventNameChange}
-					error={eventNameError}
-				/>
-				<InputWithError 
-					label='Mandante Organizador'
-					id='organizer'
-					value={organizer}
-					onChange={handleOrganizerChange}
-					error={organizerError}
-				/>
-				<InputWithError 
-					label='Sponsor'
-					id='sponsor'
-					value={sponsor}
-					onChange={handleSponsorChange}
-					error={sponsorError}
-				/>
-				<InputWithError 
-					label='Proyecto'
-					id='project'
-					value={project}
-					onChange={handleProjectChange}
-					error={projectError}
-				/>
-				<InputWithError 
-					label='Nombre(s) Invitado(s)'
-					id='inviteNameList'
-					value={inviteNameList}
-					onChange={handleInviteNameListChange}
-					error={inviteNameListError}
-				/>
-				<InputWithError 
-					label='Correo(s) Invitado(s)'
-					id='inviteEmailList'
-					value={inviteEmailList}
-					onChange={handleInviteEmailListChange}
-					error={inviteEmailListError}
-				/>
-				{showErrorMessage && <FormError errorMessage={'Por favor revisa la información que ingresaste'} />}
-				<div className="formGroup">
-					<CoolButton text={'Guardar'} onClickFunction={handleCreate} />
-				</div>
-			</FormContainer>
-		</div>
+      <PageHeader h1='Crear Evento' />
+      <FormContainer>
+        <InputWithError 
+          label='Nombre Evento'
+          id='eventName'
+          value={eventName}
+          onChange={handleEventNameChange}
+          error={eventNameError}
+        />
+        <InputWithError 
+          label='Mandante Organizador'
+          id='organizer'
+          value={organizer}
+          onChange={handleOrganizerChange}
+          error={organizerError}
+        />
+        <InputWithError 
+          label='Sponsor'
+          id='sponsor'
+          value={sponsor}
+          onChange={handleSponsorChange}
+          error={sponsorError}
+        />
+        <InputWithError 
+          label='Proyecto'
+          id='project'
+          value={project}
+          onChange={handleProjectChange}
+          error={projectError}
+        />
+        <InputWithError 
+          label='Nombre(s) Invitado(s)'
+          id='inviteNameList'
+          value={inviteNameList}
+          onChange={handleInviteNameListChange}
+          error={inviteNameListError}
+        />
+        <InputWithError 
+          label='Correo(s) Invitado(s)'
+          id='inviteEmailList'
+          value={inviteEmailList}
+          onChange={handleInviteEmailListChange}
+          error={inviteEmailListError}
+        />
+        {showErrorMessage && <FormError errorMessage={'Por favor revisa la información que ingresaste'} />}
+        <div className="formGroup">
+          <CoolButton text={'Guardar'} onClickFunction={handleCreate} />
+        </div>
+      </FormContainer>
 	</div>
 	);
 };

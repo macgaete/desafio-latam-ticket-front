@@ -19,8 +19,6 @@ import TicketRedeemed from './views/TicketRedeemed'
 
 import { useUser } from './contexts/UserContext.jsx'
 
-// TODO: Diferenciar vistas según rol
-
 function App() {
   const { user } = useUser()
 
