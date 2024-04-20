@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import CoolButton from '../components/CoolButton';
+import FormError from '../components/FormError';
 
 const Signup = () => {
   const [email, setEmail] = useState('');
@@ -199,7 +200,7 @@ const Signup = () => {
             value={email}
             onChange={handleEmailChange}
           />
-          {emailError && <p className='formErrorMessage'>{emailError}</p>}
+          {emailError && <FormError errorMessage={emailError} />}
         </div>
         <div>
           <label>Repetir Correo </label>
@@ -209,7 +210,7 @@ const Signup = () => {
             value={emailRepeat}
             onChange={handleEmailRepeatChange}
           />
-          {emailRepeatError && <p className='formErrorMessage'>{emailRepeatError}</p>}
+          {emailRepeatError && <FormError errorMessage={emailRepeatError}/>}
         </div>
         <div>
           <label>Nombre </label>
@@ -219,7 +220,7 @@ const Signup = () => {
             value={name}
             onChange={handleNameChange}
           />
-          { nameError && <p className='formErrorMessage'>{nameError}</p> }
+          { nameError && <FormError errorMessage={nameError}/> }
         </div>
         <div>
           <label>Contraseña </label>
@@ -229,7 +230,7 @@ const Signup = () => {
             value={password}
             onChange={handlePasswordChange}
           />
-          {passwordError && <p className='formErrorMessage'>{passwordError}</p>}
+          {passwordError && <FormError errorMessage={passwordError} />}
         </div>
         <div>
           <label>Repetir Contraseña </label>
@@ -239,7 +240,7 @@ const Signup = () => {
             value={passwordRepeat}
             onChange={handlePasswordRepeatChange}
           />
-          {passwordRepeatError && <p className='formErrorMessage'>{passwordRepeatError}</p>}
+          {passwordRepeatError && <FormError errorMessage={passwordRepeatError} />}
         </div>
         <div>
           <label htmlFor='dropdown'>Selecciona un rol </label>
@@ -248,9 +249,9 @@ const Signup = () => {
             <option value='invitado'>Invitado</option>
             <option value='organizador'>Organizador</option>
           </select>
-          {selectedRoleError && <p className='formErrorMessage'>{selectedRoleError}</p>}
+          {selectedRoleError && <FormError errorMessage={selectedRoleError} />}
         </div>
-        {showErrorMessage && <p className='formErrorMessage'>Por favor revisa la información que ingresaste</p>}
+        {showErrorMessage && <FormError errorMessage={'Por favor revisa la información que ingresaste'} />}
         <CoolButton text={'Registrarse'} onClick={handleSignup} />
       </form>
     </div>
