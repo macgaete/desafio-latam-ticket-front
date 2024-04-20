@@ -21,15 +21,18 @@ const EditUserDetails = () => {
     const { value } = event.target;
     setRole(value);
   };
+  
+    const handleReturn = () => {
+      navigate('/user-details')
+    }
 
-  // TODO: Arreglar función
 	const handleEdit = () => {
     if(role === 'organizador' && !user.isOrganizer){ // Si eligió organizador y no es actualmente organizador
       userCtxSetOrganizer(user.userObj);
     } else if (role === 'invitado' && user.isOrganizer) { // Si eligió invitado y no es actualmente invitado
       userCtxSetGuest(user.userObj);
     }
-    navigate('/user-details');
+    handleReturn();
 	}
 
   return (
@@ -37,12 +40,6 @@ const EditUserDetails = () => {
       <h1>Editar Perfil</h1>
       <div>
         <form>
-          <input
-            type='text'
-            id='name'
-            value={name}
-            onChange={handleNameChange}
-          />
           <div>
             <input
               type='radio'
@@ -66,6 +63,7 @@ const EditUserDetails = () => {
             <label htmlFor='organizador'>Organizador</label>
           </div>
 					<CoolButton text={'Guardar'} onClickFunction={handleEdit} />
+          <CoolButton text={'Cancelar'} onClickFunction={handleReturn} />
         </form>
       </div>
     </div>
