@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import CoolButton from '../components/CoolButton';
 
 const Signup = () => {
   const [email, setEmail] = useState('');
@@ -250,7 +251,7 @@ const Signup = () => {
           {selectedRoleError && <p className='formErrorMessage'>{selectedRoleError}</p>}
         </div>
         {showErrorMessage && <p className='formErrorMessage'>Por favor revisa la información que ingresaste</p>}
-        <button type='button' onClick={handleSignup}>Registrarse</button>
+        <CoolButton text={'Registrarse'} onClick={handleSignup} />
       </form>
     </div>
   );

@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { useUser } from '../contexts/UserContext';
 import { useNavigate } from "react-router-dom";
+import CoolButton from '../components/CoolButton';
 
 // TODO: Implementar validaciones
 
 const EditUserDetails = () => {
-  const { user } = useUser();
+  const { user, userCtxSetOrganizer, userCtxSetGuest } = useUser();
   
   const [name, setName] = useState(user.given_name);
-  const [role, setRole] = useState('invitado');
+  const [role, setRole] = useState(user.isOrganizer ? 'organizador' : 'invitado');
 
   const navigate = useNavigate();
 
@@ -17,12 +18,17 @@ const EditUserDetails = () => {
   };
 
   const handleRoleChange = (event) => {
-    setRole(event.target.value);
+    const { value } = event.target;
+    setRole(value);
   };
 
+  // TODO: Arreglar función
 	const handleEdit = () => {
-		// TODO: Implementar lógica
-		console.log('TODO: Implementar lógica');
+    if(role === 'organizador' && !user.isOrganizer){ // Si eligió organizador y no es actualmente organizador
+      userCtxSetOrganizer(user.userObj);
+    } else if (role === 'invitado' && user.isOrganizer) { // Si eligió invitado y no es actualmente invitado
+      userCtxSetGuest(user.userObj);
+    }
     navigate('/user-details');
 	}
 
@@ -59,7 +65,7 @@ const EditUserDetails = () => {
             />
             <label htmlFor='organizador'>Organizador</label>
           </div>
-					<button type='button' onClick={handleEdit}>Guardar</button>
+					<CoolButton text={'Guardar'} onClickFunction={handleEdit} />
         </form>
       </div>
     </div>

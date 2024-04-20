@@ -19,7 +19,7 @@ import TicketRedeemed from './views/TicketRedeemed'
 
 import { useUser } from './contexts/UserContext.jsx'
 
-// TODO: Diferenciar vistas según login
+// TODO: Diferenciar vistas según rol
 
 function App() {
   const { user } = useUser()
@@ -29,18 +29,36 @@ function App() {
       <Navbar/>
       <Routes>
         <Route path='*' element={ <FourOhFour /> }/>
-        <Route path='/' element={ !user.isLoggedIn && <Login /> }/>
-        <Route path='/' element={ user.isLoggedIn && <RedeemTicket /> }/>
-        <Route path='/login' element={ <Login /> }/>
-        <Route path='/signup' element={ <Signup /> }/>
-        <Route path='/new-event' element={ <NewEvent /> }/>
-        <Route path='/user-details' element={ <UserDetails /> }/>
-        <Route path='/edit-user' element={ <EditUserDetails /> }/>
-        <Route path='/user-landing' element={ <UserLanding /> }/>
         <Route path='/event/:eventID' element={ <EventInfo />}/>
-        <Route path='/edit-event/:eventID' element={ <EditEvent /> }/>
-        <Route path='/send-event/:eventID' element={ <SendEvent /> }/>
         <Route path='/ticket-redeemed' element={ <TicketRedeemed /> }/>
+        { !user.isLoggedIn ? 
+        /* Si no está logueado */
+        <>
+          <Route path='/' element= { <Login /> } />
+          <Route path='/login' element={ <Login /> }/>
+          <Route path='/signup' element={ <Signup /> }/>
+        </>
+        :
+        /* Si está logueado */
+        ( user.isOrganizer ?
+        <>
+          <Route path='/' element={ <RedeemTicket /> }/>
+          <Route path='/create-event' element={ <NewEvent /> }/>
+          <Route path='/edit-event/:eventID' element={ <EditEvent /> }/>
+          <Route path='/send-event/:eventID' element={ <SendEvent /> }/>
+          <Route path='/user-landing' element={ <UserLanding /> }/>
+          <Route path='/user-details' element={ <UserDetails /> }/>
+          <Route path='/edit-user' element={ <EditUserDetails /> }/>
+        </>
+        :
+        <>
+          <Route path='/' element={ <RedeemTicket /> }/>
+          <Route path='/user-landing' element={ <UserLanding /> }/>
+          <Route path='/user-details' element={ <UserDetails /> }/>
+          <Route path='/edit-user' element={ <EditUserDetails /> }/>
+        </>
+        )
+        }
       </Routes>
     </>
   )

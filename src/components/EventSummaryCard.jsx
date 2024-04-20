@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import CoolButton from "./CoolButton";
 
 const EventSummaryCard = ({eventName, eventTimeStart, eventTimeEnd, eventLocation, eventDate, eventTicketsSent, eventTicketsTotal, eventID}) => {
   
@@ -17,7 +18,7 @@ const EventSummaryCard = ({eventName, eventTimeStart, eventTimeEnd, eventLocatio
         <div>{eventDate}</div>
       </div>
       <div>
-        <button onClick={buttonClickFunction}>Detalle Evento</button>
+        <CoolButton text={'Detalle Evento'} onClickFunction={buttonClickFunction} />
         <div>Tickets Enviados: {eventTicketsSent}/{eventTicketsTotal}</div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
+import CoolButton from '../components/CoolButton';
 
 // TODO: Implementar validaciones
 
@@ -105,7 +106,7 @@ const EditEvent = () => {
               onChange={handleInviteEmailListChange}
             />
           </div>
-					<button type='button' onClick={handleEdit}>Guardar</button>
+					<CoolButton text={'Guardar'} onClickFunction={handleEdit} />
         </form>
       </div>
     </div>

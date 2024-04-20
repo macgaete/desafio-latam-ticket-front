@@ -29,7 +29,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #8f969d;
+    background-color: #ff005d;
 }
 
 .formErrorMessage {
@@ -37,9 +37,13 @@ nav {
 }
 
 .active {
-    color: #07dba6;
+    color: #ffffff;
 }
 
 .inactive {
     color: #f9f9f9;
+}
+
+.coolButton {
+    background-color: #ff005d;
 }

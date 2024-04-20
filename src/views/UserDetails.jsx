@@ -1,9 +1,12 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
+import { useUser } from '../contexts/UserContext';
+import CoolButton from '../components/CoolButton';
 
 // TODO: Agregar detalles del perfil
 
 const UserDetails = () => {
+	const { user } = useUser();
 	const navigate = useNavigate();
 
 	const goToEditProfile = () => {
@@ -14,9 +17,12 @@ const UserDetails = () => {
 		<div>
 			<h1>Detalles Perfil</h1>
 			<div>
-				Detalles del perfil
+				Hola {user.userObj?.name || 'Usuario'}
 			</div>
-			<button type='button' onClick={goToEditProfile}>Editar Perfil</button>
+			<div>
+				Tipo de cuenta: { (user.isOrganizer ? 'Organizador' : 'Invitado') || '' }
+			</div>
+			<CoolButton text={'Editar Perfil'} onClickFunction={goToEditProfile} />
 		</div>
 	);
 };
