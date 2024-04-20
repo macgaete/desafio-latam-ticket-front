@@ -45,7 +45,7 @@ const Signup = () => {
       setEmailError('');
     }
   };
-
+  
   const handleEmailRepeatChange = (event) => {
     const newEmailRepeat = event.target.value;
     setEmailRepeat(newEmailRepeat);
@@ -57,11 +57,11 @@ const Signup = () => {
       setEmailRepeatError('');
     }
   };
-
+  
   const handleNameChange = (event) => {
     const newName = event.target.value;
     setName(newName);
-
+  
     const isValidName = validateName(newName);
     if (!isValidName) {
       setNameError(errorList.nameError);
@@ -69,11 +69,11 @@ const Signup = () => {
       setNameError('');
     }
   };
-
+  
   const handlePasswordChange = (event) => {
     const newPassword = event.target.value
     setPassword(newPassword);
-
+  
     const isValidPassword = validatePassword(newPassword);
     if (!isValidPassword) {
       setPasswordError(errorList.passwordError)
@@ -81,11 +81,11 @@ const Signup = () => {
       setPasswordError('')
     }
   };
-
+  
   const handlePasswordRepeatChange = (event) => {
     const newPasswordRepeat = event.target.value;
     setPasswordRepeat(newPasswordRepeat);
-
+  
     const isValidPasswordRepeat = validatePasswordRepeat(newPasswordRepeat)
     if(!isValidPasswordRepeat) {
       setPasswordRepeatError(errorList.passwordRepeatError)
@@ -97,14 +97,14 @@ const Signup = () => {
   const handleRoleChange = (event) => {
     const newRole = event.target.value;
     setSelectedRole(newRole);
-
+  
     const isValidRole = validateRole(newRole);
     if (!isValidRole) {
       setSelectedRoleError(errorList.selectedRoleError);
     } else {
       setSelectedRoleError('');
     }
-  };
+  };  
 
   const handleSignup = () => {
     const isValidEmail = validateEmail(email);
@@ -196,6 +196,7 @@ const Signup = () => {
       <PageHeader h1='Signup' h4='Ingresa tus datos' />
       <FormContainer>
         <InputWithError 
+          type='text'
           label='Correo'
           id='email'
           value={email}
@@ -203,6 +204,7 @@ const Signup = () => {
           error={emailError}
         />
         <InputWithError 
+          type='text'
           label='Repetir Correo'
           id='emailRepeat'
           value={emailRepeat}
@@ -210,6 +212,7 @@ const Signup = () => {
           error={emailRepeatError}
         />
         <InputWithError 
+          type='text'
           label='Nombre'
           id='name'
           value={name}
@@ -217,6 +220,7 @@ const Signup = () => {
           error={nameError}
         />
         <InputWithError 
+          type='password'
           label='Contraseña'
           id='password'
           value={password}
@@ -224,6 +228,7 @@ const Signup = () => {
           error={passwordError}
         />
         <InputWithError 
+          type='password'
           label='Repetir Contraseña'
           id='password-repeat'
           value={passwordRepeat}
@@ -240,7 +245,7 @@ const Signup = () => {
           {selectedRoleError && <FormError errorMessage={selectedRoleError} />}
         </div>
         {showErrorMessage && <FormError errorMessage={'Por favor revisa la información que ingresaste'} />}
-        <CoolButton text={'Registrarse'} onClick={handleSignup} />
+        <CoolButton text={'Registrarse'} onClickFunction={handleSignup} />
       </FormContainer>
     </div>
   );

@@ -16,6 +16,7 @@ import EditEvent from './views/EditEvent'
 import SendEvent from './views/SendEvent'
 import RedeemTicket from './views/RedeemTicket'
 import TicketRedeemed from './views/TicketRedeemed'
+import LoginPlaceholder from './components/LoginPlaceholder.jsx'
 
 import { useUser } from './contexts/UserContext.jsx'
 
@@ -29,6 +30,7 @@ function App() {
         <Route path='*' element={ <FourOhFour /> }/>
         <Route path='/event/:eventID' element={ <EventInfo />}/>
         <Route path='/ticket-redeemed' element={ <TicketRedeemed /> }/>
+        <Route path='/login-placeholder' element={ <LoginPlaceholder /> }/>
         { !user.isLoggedIn ? 
         /* Si no está logueado */
         <>

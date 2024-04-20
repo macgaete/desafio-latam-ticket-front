@@ -1,7 +1,6 @@
 import React from 'react';
-import FormError from './FormError';
 
-const InputWithError = ({ label, id, value, onChange, error, type }) => {
+const InputBox = ({ label, id, value, onChange, type }) => {
     return (
         <div className='formGroup'>
             <div className='inputContainer'>
@@ -13,11 +12,8 @@ const InputWithError = ({ label, id, value, onChange, error, type }) => {
                     onChange={onChange}
                 />
             </div>
-            <div className='errorContainer'>
-                {error && <FormError errorMessage={error} />}
-            </div>
         </div>
     );
 }
 
-export default InputWithError;
+export default InputBox;

@@ -168,6 +168,7 @@ nav {
     padding: 20px;
     max-width: 400px;
     margin: 0 auto;
+    margin-bottom: 10px;
 }
 
 .formGroup {
@@ -186,6 +187,7 @@ nav {
 }
 
 .inputContainer input[type="text"],
+.inputContainer input[type="password"],
 .inputContainer input[type="textarea"] {
     flex: 1;
     border: none;
@@ -196,12 +198,14 @@ nav {
 }
 
 .inputContainer input[type="text"]:focus,
+.inputContainer input[type="password"]:focus,
 .inputContainer input[type="textarea"]:focus {
     border: 1px solid #ccc;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
 }
 
 .inputContainer input[type="text"]:hover,
+.inputContainer input[type="password"]:hover,
 .inputContainer input[type="textarea"]:hover {
     border: 1px solid #ccc;
 }

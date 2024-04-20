@@ -169,7 +169,8 @@ const handleCreate = () => {
 		<div>
       <PageHeader h1='Crear Evento' />
       <FormContainer>
-        <InputWithError 
+        <InputWithError
+          type='text'
           label='Nombre Evento'
           id='eventName'
           value={eventName}
@@ -177,6 +178,7 @@ const handleCreate = () => {
           error={eventNameError}
         />
         <InputWithError 
+          type='text'
           label='Mandante Organizador'
           id='organizer'
           value={organizer}
@@ -184,6 +186,7 @@ const handleCreate = () => {
           error={organizerError}
         />
         <InputWithError 
+          type='text'
           label='Sponsor'
           id='sponsor'
           value={sponsor}
@@ -191,6 +194,7 @@ const handleCreate = () => {
           error={sponsorError}
         />
         <InputWithError 
+          type='text'
           label='Proyecto'
           id='project'
           value={project}
@@ -198,6 +202,7 @@ const handleCreate = () => {
           error={projectError}
         />
         <InputWithError 
+          type='textarea'
           label='Nombre(s) Invitado(s)'
           id='inviteNameList'
           value={inviteNameList}
@@ -205,6 +210,7 @@ const handleCreate = () => {
           error={inviteNameListError}
         />
         <InputWithError 
+          type='text'
           label='Correo(s) Invitado(s)'
           id='inviteEmailList'
           value={inviteEmailList}
