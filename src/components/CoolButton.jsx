@@ -1,6 +1,6 @@
 const CoolButton = ({text, onClickFunction}) => {
     return(
-        <button onClick={onClickFunction} className="coolButton">
+        <button onClick={onClickFunction} className="coolButton" type="button">
             {text}
         </button>
     )

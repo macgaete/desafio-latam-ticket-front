@@ -1,12 +1,19 @@
 import React from "react";
+import { useNavigate } from "react-router-dom"
 import EventSummaryCard from "../components/EventSummaryCard";
 import { useUser } from '../contexts/UserContext.jsx'
+import CoolButton from "../components/CoolButton.jsx";
 
 // TODO: Obtener datos de BBDD
 // TODO: Generar contenido y cantidad de cartas dinámicamente según data de BBDD
 
 const UserLanding = () => {
     const { user } = useUser();
+    const navigate = useNavigate();
+
+    const handleNewEvent = () => {
+        navigate('/create-event')
+    }
 
     return (
         <div>
@@ -35,7 +42,7 @@ const UserLanding = () => {
                 />
             </div>
             <div>
-                
+                { user.isOrganizer && <CoolButton text={'Crear Evento'} onClickFunction={handleNewEvent} />}
             </div>
         </div>
     );

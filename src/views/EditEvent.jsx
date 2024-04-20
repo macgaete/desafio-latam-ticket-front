@@ -49,7 +49,7 @@ const EditEvent = () => {
 
   return (
     <div>
-      <h1>Editar Perfil {eventID}</h1>
+      <h1>Editar Evento {eventID}</h1>
       <div>
         <form>
           <div>

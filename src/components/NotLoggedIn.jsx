@@ -6,4 +6,5 @@ const NotLoggedIn = () => {
       </div>
     );
   };
+  
   export default NotLoggedIn;
