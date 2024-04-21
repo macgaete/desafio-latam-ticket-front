@@ -18,7 +18,6 @@ const SendEvent = () => {
     const eventObj = EventList.eventList.find(event => event.eventID === eventID);
 
     // TODO: Render dinámico luego de consultar info de evento según ID del Backend
-    // *TODO: Elaborar vista
 
     if (!eventObj) {
         return (
