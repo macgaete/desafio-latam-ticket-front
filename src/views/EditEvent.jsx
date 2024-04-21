@@ -13,7 +13,7 @@ const EditEvent = () => {
   const [inviteEmailList, setInviteEmailList] = useState('');
 
   const { eventID } = useParams();
-  // TODO: Conseguir datos de evento desde API según ID
+  // TODO: Conseguir datos de evento desde Backend según ID
 
   const navigate = useNavigate();
 
@@ -42,7 +42,7 @@ const EditEvent = () => {
   }
 
 	const handleEdit = () => {
-		// TODO: Implementar lógica
+		// *TODO: Implementar lógica
 		console.log('TODO: Implementar lógica');
     navigate(`/event/${eventID}`);
 	}

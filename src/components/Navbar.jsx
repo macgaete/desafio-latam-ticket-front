@@ -11,7 +11,7 @@ const Navbar = () => {
 
   function handleSignout() {
     userCtxLogout({});
-    navigate('/login');
+    navigate('/');
   }
 
   return (
@@ -20,7 +20,7 @@ const Navbar = () => {
         <span></span> 
         <div className="navlinks">
           { user?.isLoggedIn && <NavLink to="/user-landing" className={`${setActiveClass} coolButton`} > Home </NavLink>}
-          { !user?.isLoggedIn && <NavLink to="/login" className={`${setActiveClass} coolButton`} > Login </NavLink> } 
+          { !user?.isLoggedIn && <NavLink to="/" className={`${setActiveClass} coolButton`} > Login </NavLink> } 
           { !user?.isLoggedIn && <NavLink to="/signup" className={`${setActiveClass} coolButton`} > Regístrate </NavLink> }
           { user?.isLoggedIn && <NavLink to='/user-details' className={`${setActiveClass} coolButton`} > Perfil </NavLink> }
           { user?.isLoggedIn && <CoolButton text={'Salir'} onClickFunction={handleSignout} /> }

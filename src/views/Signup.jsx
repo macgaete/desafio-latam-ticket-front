@@ -152,7 +152,7 @@ const Signup = () => {
     if (isValidEmail && isValidEmailRepeat && isValidName && isValidPassword && isValidPasswordRepeat && isValidRole) {
       setShowErrorMessage(false);
 
-      // TODO: Implementar lógica signup
+      // TODO: Implementar lógica con Backend
       console.log('>>> PLACEHOLDER ', email, password);
       navigate('/');
     } else {

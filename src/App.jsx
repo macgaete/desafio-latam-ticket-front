@@ -30,19 +30,18 @@ function App() {
         <Route path='*' element={ <FourOhFour /> }/>
         <Route path='/event/:eventID' element={ <EventInfo />}/>
         <Route path='/ticket-redeemed' element={ <TicketRedeemed /> }/>
-        <Route path='/login-placeholder' element={ <LoginPlaceholder /> }/>
+        <Route path='/login-placeholder' element={ <LoginPlaceholder /> /* Representa un "login exitoso por API" por ahora */ }/>
         { !user.isLoggedIn ? 
         /* Si no está logueado */
         <>
           <Route path='/' element= { <Login /> } />
-          <Route path='/login' element={ <Login /> }/>
           <Route path='/signup' element={ <Signup /> }/>
         </>
         :
         /* Si está logueado */
         ( user.isOrganizer ?
         <>
-          <Route path='/' element={ <RedeemTicket /> }/>
+          <Route path='/' element={ <UserLanding /> }/>
           <Route path='/create-event' element={ <NewEvent /> }/>
           <Route path='/edit-event/:eventID' element={ <EditEvent /> }/>
           <Route path='/send-event/:eventID' element={ <SendEvent /> }/>
@@ -53,7 +52,7 @@ function App() {
         :
         <>
           <Route path='/' element={ <RedeemTicket /> }/>
-          <Route path='/user-landing' element={ <UserLanding /> }/>
+          <Route path='/user-landing' element={ <RedeemTicket /> }/>
           <Route path='/user-details' element={ <UserDetails /> }/>
           <Route path='/edit-user' element={ <EditUserDetails /> }/>
         </>

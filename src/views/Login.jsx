@@ -76,7 +76,7 @@ const Login = () => {
     if(isValidPassword && isValidUsername){
       setShowErrorMessage(false);
       
-      // TODO: Agregar lógica para login con BBDD
+      // TODO: Agregar lógica para login con Backend
       console.log('>>> PLACEHOLDER ', username, password);
       navigate('/login-placeholder');
     } else {

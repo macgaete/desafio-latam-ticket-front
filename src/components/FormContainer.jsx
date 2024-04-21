@@ -1,10 +1,10 @@
 import React from "react";
 
-const FormContainer = ({ children }) => {
+const FormContainer = ({ children, extraClasses }) => {
   return (
-    <div className="formContainer">
+    <div className={`formContainer ${extraClasses}`}>
       {React.Children.map(children, (child, index) => (
-        <div key={index} className="formGroup">
+        <div key={index} className={"formGroup"}>
           {child}
         </div>
       ))}

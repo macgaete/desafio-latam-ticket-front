@@ -152,7 +152,7 @@ const handleCreate = () => {
   if (isValidEventName && isValidOrganizer && isValidSponsor && isValidProject && isValidInviteNameList && isValidInviteEmailList) {
     setShowErrorMessage(false);
 
-    // TODO: Implementar lógica para crear evento
+    // TODO: Llamar Backend para crear evento
     console.log('>>> PLACEHOLDER ', eventName, organizer, sponsor, project, inviteNameList, inviteEmailList);
 		navigate('/user-landing')
   } else {

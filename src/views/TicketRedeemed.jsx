@@ -1,14 +1,15 @@
 import React from "react";
+import PageHeader from "../components/PageHeader";
 
 const TicketRedeemed = () => {
 
-    // TODO: Render dinámico luego de consultar info de evento según ID
+    // TODO: Render dinámico luego de consultar info de evento según ID del Backend
 
     return (
-        <div>
-            <h1>Ticket Canjeado</h1>
-            <h4>Sistema de Tickets</h4>
-        </div>
+        <PageHeader
+            h1='Ticket Canjeado'
+            h4='Sistema de Tickets'
+        />
     );
 };
 

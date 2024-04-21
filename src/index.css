@@ -77,6 +77,11 @@ a {
     height: 100%;
 }
 
+.widerCard {
+    min-width: 800px;
+    max-width: 1000px;
+}
+
 /* Navbar */
 nav {
     width: 100%;
@@ -129,6 +134,7 @@ nav {
     cursor: pointer;
     transition: background-color 0.3s ease;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
 }
 
 .coolButton:hover {

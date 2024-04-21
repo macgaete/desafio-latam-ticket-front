@@ -6,10 +6,10 @@ import CoolButton from "../components/CoolButton.jsx";
 import EventContainer from "../components/EventContainer.jsx";
 import PageHeader from "../components/PageHeader.jsx";
 
-// Esto representa una respuesta de la API por ahora
+// Esto representa una respuesta del Backend por ahora
 import EventList from "../assets/eventPlaceholder.json"
 
-// TODO: Obtener datos de BBDD
+// TODO: Obtener datos de Backend
 
 const UserLanding = () => {
     const { user } = useUser();
