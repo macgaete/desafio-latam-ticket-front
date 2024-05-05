@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CoolButton from '../components/CoolButton'
 import { useNavigate } from "react-router-dom";
 import FormError from '../components/FormError'
 import FormContainer from '../components/FormContainer';
 import InputWithError from '../components/InputWithError';
 import PageHeader from '../components/PageHeader';
-import EventList from '../assets/eventPlaceholder.json';
+import ApiConfig from '../constants/BackendApiConfig.json'
 
 const NewEvent = () => {
 	const [eventName, setEventName] = useState('');
@@ -14,7 +14,6 @@ const NewEvent = () => {
   const [project, setProject] = useState('');
   const [inviteNameList, setInviteNameList] = useState('');
   const [inviteEmailList, setInviteEmailList] = useState('');
-  const [eventList, setEventList] = useState('');
 
 	// Errores
 	const [eventNameError, setEventNameError] = useState('');
@@ -163,10 +162,29 @@ const handleCreate = () => {
 };
 
   const pushEvent = () => {
-    // Implementado en frontend por que backend no relaciona eventos con usuarios
+    // Múltiples llamadas
+
+    //
+    fetch(ApiConfig.api.url+'/events', {
+      method: 'POST',
+      body: JSON.stringify({
+        name: eventName,
+      }),
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': 'Bearer ' + user.userObj.jwt
+      }
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Respuesta de API no OK');
+      }
+      return response.json();
+    })
+    .catch(error => {
+      console.error('Fetch error:', error);
+    });
   }
-
-
 	const validateNotEmpty = (field) => {
 		return field.trim() != '';
 	}

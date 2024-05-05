@@ -3,8 +3,9 @@ import GoogleLoginDiv from '../components/GoogleLoginDiv';
 import { useNavigate } from "react-router-dom";
 import { useUser } from '../contexts/UserContext.jsx'
 
+const google_client_id = import.meta.env.VITE_G_CREDS;
+
 import { jwtDecode } from 'jwt-decode'
-import GoogleCreds from '../../creds.json'
 import CenterDiv from '../components/CenterDiv'
 import PageHeader from '../components/PageHeader.jsx';
 import FormContainer from '../components/FormContainer.jsx';
@@ -126,6 +127,7 @@ const Login = () => {
     })
     .then(data => {
       if(!user.isLoggedIn){
+        data[0].jwt = webtoken
         userCtxLogin(data[0])
       }
     })
@@ -148,7 +150,7 @@ const Login = () => {
   useEffect(() => {
     /* global google */
     google.accounts.id.initialize({
-      client_id: GoogleCreds.web.client_id,
+      client_id: google_client_id,
       callback: handleGoogleLogin
     });
 
