@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import CoolButton from '../components/CoolButton'
 import { useNavigate } from "react-router-dom";
+import { useUser } from '../contexts/UserContext';
 import FormError from '../components/FormError'
 import FormContainer from '../components/FormContainer';
 import InputWithError from '../components/InputWithError';
@@ -8,12 +9,14 @@ import PageHeader from '../components/PageHeader';
 import ApiConfig from '../constants/BackendApiConfig.json'
 
 const NewEvent = () => {
+  const { user } = useUser();
 	const [eventName, setEventName] = useState('');
   const [organizer, setOrganizer] = useState('');
   const [sponsor, setSponsor] = useState('');
   const [project, setProject] = useState('');
   const [inviteNameList, setInviteNameList] = useState('');
   const [inviteEmailList, setInviteEmailList] = useState('');
+  const [createEvent, setCreateEvent] = useState('')
 
 	// Errores
 	const [eventNameError, setEventNameError] = useState('');
@@ -153,8 +156,17 @@ const handleCreate = () => {
   if (isValidEventName && isValidOrganizer && isValidSponsor && isValidProject && isValidInviteNameList && isValidInviteEmailList) {
     setShowErrorMessage(false);
 
-    // TODO: Llamar Backend para crear evento
     console.log('>>> PLACEHOLDER ', eventName, organizer, sponsor, project, inviteNameList, inviteEmailList);
+    try {
+      pushEvent()
+      if(createEvent.message != 'Event created successfully'){
+        console.log('Se produjo un error')
+      } else {
+        navigate('/')
+      }
+    } catch (error) {
+      console.log(error)
+    }
 		navigate('/user-landing')
   } else {
     setShowErrorMessage(true);
@@ -170,7 +182,7 @@ const handleCreate = () => {
       body: JSON.stringify({
         name: eventName,
         date: '2024-05-05',
-        location: 'Ubicación'
+        location: 'Av. Falsa 123'
       }),
       headers: {
         'Content-type': 'application/json',

@@ -11,19 +11,18 @@ import ApiConfig from "../constants/BackendApiConfig.json"
 import EventList from "../assets/eventPlaceholder.json"
 
 const UserLanding = () => {
-    // TODO: Obtener datos de Backend
-    
     const { user } = useUser();
     const navigate = useNavigate();
+    const [eventList, setEventList] = useState([{}])
     
     const handleNewEvent = () => {
         navigate('/create-event')
     }
 
     useEffect(() => {
-        fetch(ApiConfig.api.url, {
+        fetch(ApiConfig.api.url + '/events', {
             method: 'GET',
-            headers: {
+            headers: {  
                 'Content-type': 'application/json',
                 'Authorization': 'Bearer ' + user.userObj.jwt
             }
@@ -34,9 +33,12 @@ const UserLanding = () => {
             }
             return response.json();
         })
+        .then(data => {
+            setEventList(data)
+        })
         .catch(error => {
             console.error('Fetch error:', error);
-          });
+        });
     }, [])
 
     return (
@@ -46,17 +48,13 @@ const UserLanding = () => {
                 { user.isOrganizer && <CoolButton text={'Crear Evento'} onClickFunction={handleNewEvent} />}
             </div>
             <EventContainer>
-                {EventList.eventList.map(event => (
+                {eventList.map(event => (
                     <EventSummaryCard
-                        key={event.eventID}
-                        eventName={event.eventName}
-                        eventTimeStart={event.eventTimeStart}
-                        eventTimeEnd={event.eventTimeEnd}
-                        eventLocation={event.eventLocation}
+                        key={event.event_id}
+                        eventName={event.name}
+                        eventLocation={event.location}
                         eventDate={event.eventDate}
-                        eventTicketsSent={event.eventTicketsSent}
-                        eventTicketsTotal={event.eventTicketsTotal}
-                        eventID={event.eventID}
+                        eventID={event.event_id}
                     />
                 ))}
             </EventContainer>

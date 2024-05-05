@@ -1,29 +1,48 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useUser } from "../contexts/UserContext";
 import { useNavigate, useParams } from "react-router-dom";
 import PageHeader from "../components/PageHeader";
-import EventList from '../assets/eventPlaceholder.json';
 import CenterDiv from '../components/CenterDiv';
 import EventSummaryCard from "../components/EventSummaryCard";
 import EventContainer from "../components/EventContainer";
 import FormContainer from "../components/FormContainer";
 import InputWithError from "../components/InputWithError";
 import CoolButton from "../components/CoolButton";
+import ApiConfig from "../constants/BackendApiConfig.json"
 
 const SendEvent = () => {
+    const { user } = useUser();
     const [inviteList, setInviteList] = useState('')
     const [inviteListError, setInviteListError] = useState('')
+    const [eventObj, setEventObj] = useState({});
     const { eventID } = useParams();
     const navigate = useNavigate();
 
-    const eventObj = EventList.eventList.find(event => event.eventID === eventID);
-
-    // TODO: Render dinámico luego de consultar info de evento según ID del Backend
-
-    if (!eventObj) {
-        return (
-            <PageHeader h1='Evento no encontrado!' />
-        );
+    const getEventInfo = () => {
+        fetch(ApiConfig.api.url + '/event/' + eventID, {
+            method: 'GET',
+            headers: {  
+                'Content-type': 'application/json',
+                'Authorization': 'Bearer ' + user.userObj.jwt
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+              throw new Error('Respuesta de API no OK');
+            }
+            return response.json();
+        })
+        .then(data => {
+            setEventObj(data)
+        })
+            .catch(error => {
+            console.error('Fetch error:', error);
+        });
     }
+
+    useEffect(() => {
+        getEventInfo();
+    }, [])
 
     const errorList = {
         inviteListEmpty : 'La lista no puede estar vacía'
@@ -63,13 +82,11 @@ const SendEvent = () => {
     return (
         <>
             <CenterDiv>
-                <PageHeader h1={`Enviar evento "${eventObj.eventName}"`} h4='Sistema de Tickets' />
+                <PageHeader h1={`Enviar evento "${eventObj.name}"`} h4='Sistema de Tickets' />
                 <FormContainer>
                     <>
-                        <p><strong>Fecha:</strong> {eventObj.eventDate}</p>
-                        <p><strong>Horario:</strong> {eventObj.eventTimeStart} - {eventObj.eventTimeEnd}</p>
-                        <p><strong>Lugar:</strong> {eventObj.eventLocation}</p>
-                        <p><strong>Tickets enviados:</strong> {eventObj.eventTicketsSent}/{eventObj.eventTicketsTotal}</p>
+                        <p><strong>Fecha:</strong> {eventObj.date}</p>
+                        <p><strong>Lugar:</strong> {eventObj.location}</p>
                     </>
                     <InputWithError
                         type='text'

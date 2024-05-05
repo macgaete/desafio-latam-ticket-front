@@ -1,24 +1,43 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useUser } from "../contexts/UserContext";
 import PageHeader from "../components/PageHeader";
-import EventList from '../assets/eventPlaceholder.json';
 import CenterDiv from '../components/CenterDiv';
 import CoolButton from "../components/CoolButton";
-import FormContainer from "../components/FormContainer";
-import EventContainer from "../components/EventContainer";
+import ApiConfig from "../constants/BackendApiConfig.json"
 
 const EventInfo = () => {
     const { eventID } = useParams();
+    const [eventObj, setEventObj] = useState({});
+    const { user } = useUser();
     const navigate = useNavigate();
 
-    const eventObj = EventList.eventList.find(event => event.eventID === eventID);
-
-    if (!eventObj) {
-        return (
-            <PageHeader h1='Evento no encontrado!' />
-        );
+    const getEventInfo = () => {
+        fetch(ApiConfig.api.url + '/event/' + eventID, {
+            method: 'GET',
+            headers: {  
+                'Content-type': 'application/json',
+                'Authorization': 'Bearer ' + user.userObj.jwt
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+              throw new Error('Respuesta de API no OK');
+            }
+            return response.json();
+        })
+        .then(data => {
+            setEventObj(data)
+        })
+            .catch(error => {
+            console.error('Fetch error:', error);
+        });
     }
+
+    useEffect(() => {
+        getEventInfo();
+    }, [])
+
 
     const handleSend = () => {
         navigate(`/send-event/${eventID}`)
@@ -26,13 +45,11 @@ const EventInfo = () => {
 
     return (
         <>
-            <PageHeader h1={eventObj.eventName} />
+            <PageHeader h1={eventObj.name} />
             <CenterDiv>
                 <>
-                    <p><strong>Fecha:</strong> {eventObj.eventDate}</p>
-                    <p><strong>Horario:</strong> {eventObj.eventTimeStart} - {eventObj.eventTimeEnd}</p>
-                    <p><strong>Lugar:</strong> {eventObj.eventLocation}</p>
-                    <p><strong>Tickets enviados:</strong> {eventObj.eventTicketsSent}/{eventObj.eventTicketsTotal}</p>
+                    <p><strong>Fecha:</strong> {eventObj.date}</p>
+                    <p><strong>Lugar:</strong> {eventObj.location}</p>
                 </>
                 <CoolButton onClickFunction={handleSend} text={'Enviar'}/>
             </CenterDiv>
