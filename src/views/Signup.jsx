@@ -5,6 +5,7 @@ import FormError from '../components/FormError';
 import PageHeader from '../components/PageHeader';
 import InputWithError from '../components/InputWithError';
 import FormContainer from '../components/FormContainer';
+import ApiConfig from '../constants/BackendApiConfig.json'
 
 const Signup = () => {
   const [email, setEmail] = useState('');
@@ -13,6 +14,7 @@ const Signup = () => {
   const [password, setPassword] = useState('');
   const [passwordRepeat, setPasswordRepeat] = useState('');
   const [selectedRole, setSelectedRole] = useState('');
+  const [signupResponse, setSignupResponse] = useState({message:'',user:{}})
 
   // Errores
   const [emailError, setEmailError] = useState('');
@@ -22,6 +24,8 @@ const Signup = () => {
   const [passwordRepeatError, setPasswordRepeatError] = useState('');  
   const [selectedRoleError, setSelectedRoleError] = useState('');
   const [showErrorMessage, setShowErrorMessage] = useState(false);
+  const [showSignupErrorMessage, setShowSignupErrorMessage] = useState(false);
+  
 
   const errorList = {
     emailError: 'Por favor ingresa un correo válido',
@@ -35,6 +39,8 @@ const Signup = () => {
   const navigate = useNavigate();
 
   const handleEmailChange = (event) => {
+    setShowSignupErrorMessage(false)
+
     const newEmail = event.target.value;
     setEmail(newEmail);
     
@@ -107,6 +113,8 @@ const Signup = () => {
   };  
 
   const handleSignup = () => {
+    setShowSignupErrorMessage(false)
+
     const isValidEmail = validateEmail(email);
     if (!isValidEmail) {
       setEmailError(errorList.emailError);
@@ -152,12 +160,48 @@ const Signup = () => {
     if (isValidEmail && isValidEmailRepeat && isValidName && isValidPassword && isValidPasswordRepeat && isValidRole) {
       setShowErrorMessage(false);
 
-      // TODO: Implementar lógica con Backend
-      console.log('>>> PLACEHOLDER ', email, password);
-      navigate('/');
+      try{
+        postSignup()
+        if(signupResponse.message != 'User created successfully'){
+          setShowSignupErrorMessage(true)
+        } else {
+          navigate('/')
+        }
+      } catch(error) {
+        console.log(error);
+      }
     } else {
       setShowErrorMessage(true);
     }
+  };
+
+  // Signup con API
+  const postSignup = () => {
+    fetch(ApiConfig.api.url+'/usuarios', {
+      method: 'POST',
+      body: JSON.stringify({
+        email: email,
+        password: password,
+        role: selectedRole,
+        name: name,
+        contact_info: email
+      }),
+      headers: {
+        'Content-type': 'application/json',
+      }
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Respuesta de API no OK, el usuario probablemente ya existe');
+      }
+      return response.json();
+    })
+    .then(data => {
+      setSignupResponse(data);
+    })
+    .catch(error => {
+      console.error('Fetch error:', error);
+    });
   };
 
   // Validaciones
@@ -245,6 +289,7 @@ const Signup = () => {
           {selectedRoleError && <FormError errorMessage={selectedRoleError} />}
         </div>
         {showErrorMessage && <FormError errorMessage={'Por favor revisa la información que ingresaste'} />}
+        {showSignupErrorMessage && <FormError errorMessage={'No pudimos registrarte, probablemente ese correo ya está usado!'} />}
         <CoolButton text={'Registrarse'} onClickFunction={handleSignup} />
       </FormContainer>
     </div>
