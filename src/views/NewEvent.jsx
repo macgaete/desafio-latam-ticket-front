@@ -164,11 +164,13 @@ const handleCreate = () => {
   const pushEvent = () => {
     // Múltiples llamadas
 
-    //
+    // 
     fetch(ApiConfig.api.url+'/events', {
       method: 'POST',
       body: JSON.stringify({
         name: eventName,
+        date: '2024-05-05',
+        location: 'Ubicación'
       }),
       headers: {
         'Content-type': 'application/json',
