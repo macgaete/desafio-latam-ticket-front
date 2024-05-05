@@ -5,6 +5,7 @@ import FormError from '../components/FormError'
 import FormContainer from '../components/FormContainer';
 import InputWithError from '../components/InputWithError';
 import PageHeader from '../components/PageHeader';
+import EventList from '../assets/eventPlaceholder.json';
 
 const NewEvent = () => {
 	const [eventName, setEventName] = useState('');
@@ -13,6 +14,7 @@ const NewEvent = () => {
   const [project, setProject] = useState('');
   const [inviteNameList, setInviteNameList] = useState('');
   const [inviteEmailList, setInviteEmailList] = useState('');
+  const [eventList, setEventList] = useState('');
 
 	// Errores
 	const [eventNameError, setEventNameError] = useState('');
@@ -159,6 +161,10 @@ const handleCreate = () => {
     setShowErrorMessage(true);
   }
 };
+
+  const pushEvent = () => {
+    // Implementado en frontend por que backend no relaciona eventos con usuarios
+  }
 
 
 	const validateNotEmpty = (field) => {

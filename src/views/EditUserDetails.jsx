@@ -10,7 +10,7 @@ const EditUserDetails = () => {
   const { user, userCtxSetOrganizer, userCtxSetGuest } = useUser();
   
   const [name, setName] = useState(user.given_name);
-  const [role, setRole] = useState(user.isOrganizer ? 'organizador' : 'invitado');
+  const [role, setRole] = useState(user.isOrganizer ? 'admin' : 'invitado');
 
   const navigate = useNavigate();
 
@@ -28,7 +28,7 @@ const EditUserDetails = () => {
     }
 
 	const handleEdit = () => {
-    if(role === 'organizador' && !user.isOrganizer){ // Si eligió organizador y no es actualmente organizador
+    if(role === 'admin' && !user.isOrganizer){ // Si eligió admin y no es actualmente admin
       userCtxSetOrganizer(user.userObj);
     } else if (role === 'invitado' && user.isOrganizer) { // Si eligió invitado y no es actualmente invitado
       userCtxSetGuest(user.userObj);
@@ -55,13 +55,13 @@ const EditUserDetails = () => {
           <div>
             <input
               type='radio'
-              id='organizador'
+              id='admin'
               name='role'
-              value='organizador'
-              checked={role === 'organizador'}
+              value='admin'
+              checked={role === 'admin'}
               onChange={handleRoleChange}
             />
-            <label htmlFor='organizador'>Organizador</label>
+            <label htmlFor='admin'>Organizador</label>
           </div>
 					<CoolButton text={'Guardar'} onClickFunction={handleEdit} />
           <CoolButton text={'Cancelar'} onClickFunction={handleReturn} />
