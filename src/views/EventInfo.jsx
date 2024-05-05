@@ -8,7 +8,6 @@ import CoolButton from "../components/CoolButton";
 import FormContainer from "../components/FormContainer";
 import EventContainer from "../components/EventContainer";
 
-// TODO: Diferenciar vista según organizador e invitado
 const EventInfo = () => {
     const { eventID } = useParams();
     const navigate = useNavigate();

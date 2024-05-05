@@ -284,7 +284,7 @@ const Signup = () => {
           <select id='dropdown' value={selectedRole} onChange={handleRoleChange}>
             <option value=''>Selecciona un rol</option>
             <option value='invitado'>Invitado</option>
-            <option value='organizador'>Organizador</option>
+            <option value='admin'>Organizador</option>
           </select>
           {selectedRoleError && <FormError errorMessage={selectedRoleError} />}
         </div>

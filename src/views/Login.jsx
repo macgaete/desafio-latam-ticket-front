@@ -11,6 +11,7 @@ import FormContainer from '../components/FormContainer.jsx';
 import InputWithError from '../components/InputWithError.jsx';
 import CoolButton from '../components/CoolButton.jsx';
 import FormError from '../components/FormError.jsx';
+import ApiConfig from '../constants/BackendApiConfig.json'
 
 const Login = () => {
   const { user, userCtxLogin } = useUser();
@@ -21,6 +22,7 @@ const Login = () => {
   const [usernameError, setUsernameError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [showErrorMessage, setShowErrorMessage] = useState(false);
+  const [webtoken, setWebtoken] = useState('')
 
   const errorList = {
     usernameError: 'Por favor, ingresa tu usuario',
@@ -76,12 +78,60 @@ const Login = () => {
     if(isValidPassword && isValidUsername){
       setShowErrorMessage(false);
       
-      // TODO: Agregar lógica para login con Backend
-      console.log('>>> PLACEHOLDER ', username, password);
-      navigate('/login-placeholder');
+      postLogin();
+      getUserInfo();
     } else {
       setShowErrorMessage(true);
     }
+  }
+
+  const postLogin = () => {
+    fetch(ApiConfig.api.url+'/login',{
+      method: 'POST',
+      body: JSON.stringify({
+        email: username,
+        password: password
+      }),
+      headers: {
+        'Content-type': 'application/json',
+      }
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Respuesta de API no OK');
+      }
+      return response.json();
+    })
+    .then(data => {
+      setWebtoken(data.token);
+    })
+    .catch(error => {
+      console.error('Fetch error:', error);
+    });
+  }
+
+  const getUserInfo = () => {
+    fetch(ApiConfig.api.url+'/usuarios',{
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': 'Bearer ' + webtoken
+      }
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Respuesta de API no OK');
+      }
+      return response.json();
+    })
+    .then(data => {
+      if(!user.isLoggedIn){
+        userCtxLogin(data[0])
+      }
+    })
+    .catch(error => {
+      console.error('Fetch error:', error);
+    });
   }
 
   function handleGoogleLogin(response){
